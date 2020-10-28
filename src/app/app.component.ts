@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   private static readonly SCORE_MULTIPLIER = 5;
   private static readonly BALL_MOVE_PAUSE = 75;
   private static readonly BALL_INITIAL = 5;
-  private static readonly BALL_INCREMENT = 2;
+  private static readonly BALL_INCREMENT = 3;
   private static readonly DIRECTION = [
     [1, 0], [-1, 0], [0, 1], [0, -1],
   ];
