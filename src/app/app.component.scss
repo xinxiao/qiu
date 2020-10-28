@@ -1,0 +1,31 @@
+$ball-size: 80%;
+
+h1 {
+    font-size: 3.5em;
+    margin-bottom: 1em;
+}
+
+h2 {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+#applet {
+    max-width: 655px;
+    margin: 35px auto;
+    margin-bottom: 85px;
+    padding: 7.5%;
+}
+
+.tile {
+    border: 1px solid;
+    border-radius: 2px;
+}
+
+.ball {
+    width: $ball-size;
+    height: $ball-size;
+    margin: auto;
+    border-radius: 50%;
+    display: inline-block;
+}
