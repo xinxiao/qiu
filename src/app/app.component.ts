@@ -81,7 +81,7 @@ export class AppComponent implements OnInit {
     }
 
     await this.moveBall(p);
-    this.reduceBallsAndCountScore(e);
+    this.reduceBallsAndCountScore(e, true);
     this.addBall(AppComponent.BALL_INCREMENT);
   }
 
@@ -177,7 +177,7 @@ export class AppComponent implements OnInit {
     await this.moveBall(p);
   }
 
-  private reduceBallsAndCountScore(i: number): void {
+  private reduceBallsAndCountScore(i: number, countScore: boolean): void {
     const [x, y] = this.getPos(i);
 
     for (const g of [
@@ -188,7 +188,10 @@ export class AppComponent implements OnInit {
     ]) {
       const s = this.computeScore(g);
       if (s > 0) {
-        this.score += s * AppComponent.SCORE_MULTIPLIER;
+        if (countScore) {
+          this.score += s * AppComponent.SCORE_MULTIPLIER;
+        }
+
         for (const gi of g) {
           this.board[gi] = Color.NONE;
         }
@@ -284,6 +287,7 @@ export class AppComponent implements OnInit {
       }
 
       this.board[i] = AppComponent.getRandomColor();
+      this.reduceBallsAndCountScore(i, false);
       needBall--;
     }
   }
