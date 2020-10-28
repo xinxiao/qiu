@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   private static readonly SCORE_MULTIPLIER = 5;
   private static readonly BALL_MOVE_PAUSE = 75;
   private static readonly BALL_INITIAL = 5;
-  private static readonly BALL_INCREMENT = 3;
+  private static readonly BALL_INCREMENT = 2;
   private static readonly DIRECTION = [
     [1, 0], [-1, 0], [0, 1], [0, -1],
   ];
@@ -82,7 +82,8 @@ export class AppComponent implements OnInit {
 
     await this.moveBall(p);
     this.reduceBallsAndCountScore(e, true);
-    this.addBall(AppComponent.BALL_INCREMENT);
+
+    this.addBall(1 + Math.trunc(Math.random() * AppComponent.BALL_INCREMENT));
   }
 
   getPos(i: number): Array<number> {
