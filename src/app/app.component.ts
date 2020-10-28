@@ -97,6 +97,12 @@ export class AppComponent implements OnInit {
     return AppComponent.COLOR_MAP[c.valueOf()];
   }
 
+  intendReset(): void {
+    if (confirm('确定要重新开始吗？')) {
+      this.reset();
+    }
+  }
+
   private hasBallAt(i: number): boolean {
     return this.board[i] !== Color.NONE;
   }

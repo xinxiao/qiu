@@ -3,7 +3,14 @@
 
   <mat-drawer-content id="applet">
     <h1>五彩连珠</h1>
-    <h2>积分: {{ score }}</h2>
+    <div style="display: flex;">
+      <h2>积分: {{ score }}</h2>
+      <span style="flex: 1 1 auto"></span>
+      <button mat-raised-button color="accent" style="height: 36px;" (click)="intendReset()">
+        重新开始
+      </button>
+    </div>
+    
     
     <mat-grid-list id="board" [cols]="size" rowHeight="1:1">
       <mat-grid-tile class="tile" *ngFor="let c of board; index as i;">
