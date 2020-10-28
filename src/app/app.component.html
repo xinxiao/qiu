@@ -16,8 +16,10 @@
     
     
     <mat-grid-list id="board" [cols]="size" rowHeight="1:1">
-      <mat-grid-tile class="board-tile" *ngFor="let c of board; index as i;">
-        <div class="ball" [style.background-color]="getColor(c)" (click)="bufferMovePositionForOps(i)"></div>
+      <mat-grid-tile class="board-tile"  *ngFor="let c of board; index as i;">
+        <div class="ball" [class.selected-ball]="i === from" 
+             [style.background-color]="getColor(c)" (click)="bufferMovePositionForOps(i)">
+        </div>
       </mat-grid-tile>
     </mat-grid-list>
   </mat-drawer-content>

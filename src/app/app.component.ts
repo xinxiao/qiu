@@ -35,15 +35,15 @@ export class AppComponent implements OnInit {
     Color.BLUE, Color.PURPLE,
   ];
   private static readonly COLOR_MAP = [
-    'none', 'red', 'orange', 'yellow', 'chartreuse',
-    'aqua', 'blueviolet',
+    'none', 'red', 'darkorange', 'gold', 'chartreuse',
+    'dodgerblue', 'blueviolet',
   ];
 
   score: number;
   highScore: number;
   size: number;
   board: Array<Color>;
-  private moveBuffer: Array<number>;
+  private from: number;
 
   private static getRandomColor(): Color {
     return AppComponent.ALL_COLOR[Math.trunc(Math.random() * AppComponent.ALL_COLOR.length)];
@@ -58,24 +58,22 @@ export class AppComponent implements OnInit {
     this.highScore = this.getHighScore();
     this.size = AppComponent.DEFAULT_GRID_SIZE;
     this.board = new Array<Color>(this.size * this.size).fill(Color.NONE);
-    this.moveBuffer = new Array<number>(0);
+    this.from = null;
 
     this.addBall(AppComponent.BALL_INITIAL);
   }
 
   async bufferMovePositionForOps(i: number): Promise<void> {
-    this.moveBuffer.push(i);
-
-    const l = this.moveBuffer.length;
-    if (l < 2) {
+    if (this.from === null) {
+      if (this.hasBallAt(i)) {
+        this.from = i;
+      }
       return;
     }
 
-    const s = this.moveBuffer[l - 2];
-    const e = this.moveBuffer[l - 1];
-    if (!this.hasBallAt(s) || this.hasBallAt(e)) {
-      return;
-    }
+    const s = this.from;
+    const e = i;
+    this.from = null;
 
     const p = this.findPath(this.getPos(s), this.getPos(e));
     if (p.length === 0) {
@@ -297,7 +295,7 @@ export class AppComponent implements OnInit {
 
   private addBall(needBall: number): void {
     if (this.countAvailableSpotForNewBalls() <= needBall) {
-      alert('老许，没地儿给你放新球了，再来一把吧 ；p ！');
+      alert('没地儿给你放新球了，再来一把吧 ；p ！');
       this.reset();
       return;
     }
