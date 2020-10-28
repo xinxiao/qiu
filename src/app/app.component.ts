@@ -40,6 +40,7 @@ export class AppComponent implements OnInit {
   ];
 
   score: number;
+  highScore: number;
   size: number;
   board: Array<Color>;
   private moveBuffer: Array<number>;
@@ -54,6 +55,7 @@ export class AppComponent implements OnInit {
 
   reset(): void {
     this.score = 0;
+    this.highScore = this.getHighScore();
     this.size = AppComponent.DEFAULT_GRID_SIZE;
     this.board = new Array<Color>(this.size * this.size).fill(Color.NONE);
     this.moveBuffer = new Array<number>(0);
@@ -102,6 +104,19 @@ export class AppComponent implements OnInit {
     if (confirm('确定要重新开始吗？')) {
       this.reset();
     }
+  }
+
+  private highScoreKey(): string {
+    return `${window.location.href}_high_score`;
+  }
+
+  private getHighScore(): number {
+    const hs = window.localStorage.getItem(this.highScoreKey());
+    return !hs ? 0 : parseInt(hs, 10);
+  }
+
+  private saveHighScore(): void {
+    window.localStorage.setItem(this.highScoreKey(), `${this.highScore}`);
   }
 
   private hasBallAt(i: number): boolean {
@@ -190,7 +205,7 @@ export class AppComponent implements OnInit {
       const s = this.computeScore(g);
       if (s > 0) {
         if (countScore) {
-          this.score += s * AppComponent.SCORE_MULTIPLIER;
+          this.updateScore(this.score + s * AppComponent.SCORE_MULTIPLIER);
         }
 
         for (const gi of g) {
@@ -202,6 +217,12 @@ export class AppComponent implements OnInit {
 
   private computeScore(g: Array<number>): number {
     return g.length < AppComponent.SCORE_LIMIT ? 0 : g.length * (1 + Math.trunc((g.length - AppComponent.SCORE_LIMIT) / 2));
+  }
+
+  private updateScore(ns: number): void {
+    this.score = ns;
+    this.highScore = Math.max(this.highScore, ns);
+    this.saveHighScore();
   }
 
   private countRow(x: number, y: number): Array<number> {

@@ -2,12 +2,12 @@ $ball-size: 80%;
 
 h1 {
     font-size: 3.5em;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
 }
 
-h2 {
-    font-size: 2em;
-    margin-bottom: 1em;
+h3 {
+    font-size: 1.5em;
+    margin: 0.5em 0em;
 }
 
 #applet {
@@ -17,7 +17,7 @@ h2 {
     padding: 5%;
 }
 
-.tile {
+.board-tile {
     border: 1px solid;
     border-radius: 2px;
 }

@@ -3,8 +3,11 @@
 
   <mat-drawer-content id="applet">
     <h1>球</h1>
-    <div style="display: flex;">
-      <h2>积分: {{ score }}</h2>
+    <div style="display: flex; align-items: center; margin-bottom: 1em;">
+      <div>
+        <h3>积分: {{ score }}</h3>
+        <h3>历史最高分: {{ highScore }}</h3>
+      </div>
       <span style="flex: 1 1 auto"></span>
       <button mat-raised-button color="accent" style="height: 36px;" (click)="intendReset()">
         重新开始
@@ -13,7 +16,7 @@
     
     
     <mat-grid-list id="board" [cols]="size" rowHeight="1:1">
-      <mat-grid-tile class="tile" *ngFor="let c of board; index as i;">
+      <mat-grid-tile class="board-tile" *ngFor="let c of board; index as i;">
         <div class="ball" [style.background-color]="getColor(c)" (click)="bufferMovePositionForOps(i)"></div>
       </mat-grid-tile>
     </mat-grid-list>
