@@ -12,7 +12,7 @@ enum Color {
 
 interface PathNode {
   prev?: PathNode;
-  curr: Array<number>;
+  curr: number;
 }
 
 @Component({
@@ -75,7 +75,7 @@ export class AppComponent implements OnInit {
     const e = i;
     this.from = null;
 
-    const p = this.findPath(this.getPos(s), this.getPos(e));
+    const p = this.findPath(s, e);
     if (p.length === 0) {
       return;
     }
@@ -121,9 +121,9 @@ export class AppComponent implements OnInit {
     return this.board[i] !== Color.NONE;
   }
 
-  private getSuccessor(pos: Array<number>): Array<Array<number>> {
-    const [x, y] = pos;
-    const r = new Array<Array<number>>(0);
+  private getSuccessor(i: number): Array<number> {
+    const [x, y] = this.getPos(i);
+    const r = new Array<number>(0);
 
     for (const [dx, dy] of AppComponent.DIRECTION) {
       const nPos = [x + dx, y + dy];
@@ -131,15 +131,14 @@ export class AppComponent implements OnInit {
       if (nx >= 0 && nx < this.size &&
         ny >= 0 && ny < this.size &&
         !this.hasBallAt(this.getId(nPos))) {
-        r.push(nPos);
+        r.push(this.getId(nPos));
       }
     }
 
     return r;
   }
 
-  private findPath(s: Array<number>, e: Array<number>): Array<number> {
-    const eId = this.getId(e);
+  private findPath(s: number, e: number): Array<number> {
     const q = new Array<PathNode>();
     q.push({ curr: s });
 
@@ -147,29 +146,27 @@ export class AppComponent implements OnInit {
 
     while (q.length > 0) {
       let p = q.shift();
-      const cId = this.getId(p.curr);
-      if (visited.has(cId)) {
+      if (visited.has(p.curr)) {
         continue;
       }
 
-      visited.add(cId);
+      visited.add(p.curr);
       for (const n of this.getSuccessor(p.curr)) {
-        const nId = this.getId(n);
-        if (visited.has(nId)) {
+        if (visited.has(n)) {
           continue;
         }
 
-        if (nId !== eId) {
+        if (n !== e) {
           q.push({ prev: p, curr: n });
           continue;
         }
 
         const r = new Array<number>();
         while (p) {
-          r.push(this.getId(p.curr));
+          r.push(p.curr);
           p = p.prev;
         }
-        return r.reverse().concat(eId);
+        return r.reverse().concat(e);
       }
     }
 
