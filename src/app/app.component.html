@@ -2,7 +2,6 @@
   <mat-drawer></mat-drawer>
 
   <mat-drawer-content id="applet">
-    <h1>球</h1>
     <div style="display: flex; align-items: center; margin-bottom: 1em;">
       <div>
         <h3>积分: {{ score }}</h3>
@@ -13,16 +12,13 @@
         重新开始
       </button>
     </div>
-    
-    
+
     <mat-grid-list id="board" [cols]="size" rowHeight="1:1">
-      <mat-grid-tile class="board-tile"  *ngFor="let c of board; index as i;">
-        <div class="ball" [class.selected-ball]="i === from" 
-             [style.background-color]="getColor(c)" (click)="bufferMovePositionForOps(i)">
+      <mat-grid-tile class="board-tile" *ngFor="let c of board; index as i;">
+        <div class="ball" [class.selected-ball]="i === from" [style.background-color]="getColor(c)"
+          (click)="bufferMovePositionForOps(i)">
         </div>
       </mat-grid-tile>
     </mat-grid-list>
   </mat-drawer-content>
 </mat-drawer-container>
-
-

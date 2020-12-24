@@ -1,11 +1,6 @@
 $ball-size: 75%;
 $selected-ball-border-size: 3px;
 
-h1 {
-    font-size: 3.5em;
-    margin-bottom: 0.5em;
-}
-
 h3 {
     font-size: 1.5em;
     margin: 0.5em 0em;
@@ -13,7 +8,7 @@ h3 {
 
 #applet {
     max-width: 425px;
-    margin: 35px auto;
+    margin: 15px auto;
     margin-bottom: 75px;
     padding: 5%;
 }
