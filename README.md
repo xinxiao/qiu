@@ -1,27 +1,13 @@
-# Qiu
+# 球
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.6.
+I made this game for my laolao(grandma) a while ago.
 
-## Development server
+Back then she was diagnosed with cancer and for most of time she had to stay in the hospital for chemo. This was her favorite game on PC, so I made a web version of it for her to play on a phone or an iPad, which are more accessible in hospitals. She had sufferred a lot from the treatment, but she told me this little game was something that helped her through.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+She passed on March 27th, 2021, peacefully and no longer feeling any pain. Because of COVID, I couldn't be there to say goodbye for the last time. I had so many thought in my head, but right now as I'm typing right here, I just don't know what should be put down. 
 
-## Code scaffolding
+I hope you will some time play the game again;
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+And,
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+姥姥，我很想你 :(

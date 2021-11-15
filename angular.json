@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "qiu"
+  "defaultProject": "qiu",
+  "cli": {
+    "analytics": "6fbab65a-5631-4506-95d8-3c0b3c47ab80"
+  }
 }

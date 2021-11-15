@@ -12,7 +12,9 @@
         重新开始
       </button>
     </div>
-
+    <div *ngIf="score > 0">
+      <h2>姥姥，我很想你 :(</h2>
+    </div>
     <mat-grid-list id="board" [cols]="size" rowHeight="1:1">
       <mat-grid-tile class="board-tile" *ngFor="let c of board; index as i;">
         <div class="ball" [class.selected-ball]="i === from" [style.background-color]="getColor(c)"
